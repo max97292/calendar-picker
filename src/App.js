@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
+const calendarDates = Array(31)
+  .fill(0)
+  .map((e, i) => i);
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="date-chooser">
+        <button className="date-chooser-button">
+          Start Date <span>0</span>
+        </button>
+        <button className="date-chooser-button">
+          End Date <span>0</span>
+        </button>
+      </div>
+
+      <div className="calendar">
+        {calendarDates.map((day, index) => {
+          return <div className="calendar-day">{day + 1}</div>;
+        })}
+      </div>
+    </>
   );
 }
-
-export default App;
