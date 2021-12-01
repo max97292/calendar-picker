@@ -10,6 +10,7 @@ export default function App() {
   const [choosingType, setChoosingType] = useState('start');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [hoverDate, setHoverDate] = useState(null);
 
   function updateDate(choosenDay) {
     if (startDate && choosenDay < startDate) {
@@ -32,13 +33,24 @@ export default function App() {
     }
   }
 
+  function checkInBetween(day) {
+    if (startDate && !endDate) return day > startDate && day < hoverDate;
+    return day > startDate && day < endDate;
+  }
+
   return (
     <>
       <StyledDateChooser>
-        <StyledDateChooserButton onClick={() => setChoosingType('start')}>
+        <StyledDateChooserButton
+          onClick={() => setChoosingType('start')}
+          isChoosing={choosingType === 'start'}
+        >
           Start Date <span>{startDate}</span>
         </StyledDateChooserButton>
-        <StyledDateChooserButton onClick={() => setChoosingType('end')}>
+        <StyledDateChooserButton
+          onClick={() => setChoosingType('end')}
+          isChoosing={choosingType === 'end'}
+        >
           End Date <span>{endDate}</span>
         </StyledDateChooserButton>
       </StyledDateChooser>
@@ -47,13 +59,16 @@ export default function App() {
         {calendarDates.map((day, index) => {
           const dayNumber = day + 1;
 
+          const isInBetween = checkInBetween(dayNumber);
           const isSelected = dayNumber === startDate || dayNumber === endDate;
 
           return (
             <StyledCalendarDay
               key={index}
+              isInBetween={isInBetween}
               isSelected={isSelected}
               onClick={() => updateDate(dayNumber)}
+              onMouseOver={() => setHoverDate(dayNumber)}
             >
               {day + 1}
             </StyledCalendarDay>
@@ -79,7 +94,7 @@ const StyledDateChooserButton = styled.button`
   border: none;
   border-bottom: 2px solid rgba(11, 32, 76, 0.2);
   outline: none;
-
+  border-color: ${(props) => (props.isChoosing ? '#0b204c' : 'none')};
   span {
     display: block;
     min-height: 60px;
@@ -112,9 +127,21 @@ const StyledCalendarDay = styled.button`
   background: none;
 
   ${(props) =>
+    props.isInBetween &&
+    css`
+      color: #eee;
+      background: #254381 !important;
+    `};
+
+  ${(props) =>
     props.isSelected &&
     css`
       color: #eee;
-      background: #1a1a1a;
+      background: #1a1a1a !important;
     `};
+
+  &:hover {
+    color: #eee;
+    background: #254381;
+  }
 `;
