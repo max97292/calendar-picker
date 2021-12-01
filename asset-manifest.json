@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/calendar-picker/static/css/main.2e924143.chunk.css",
-    "main.js": "/calendar-picker/static/js/main.56191d24.chunk.js",
-    "main.js.map": "/calendar-picker/static/js/main.56191d24.chunk.js.map",
+    "main.js": "/calendar-picker/static/js/main.b381bc1e.chunk.js",
+    "main.js.map": "/calendar-picker/static/js/main.b381bc1e.chunk.js.map",
     "runtime-main.js": "/calendar-picker/static/js/runtime-main.acfaf61a.js",
     "runtime-main.js.map": "/calendar-picker/static/js/runtime-main.acfaf61a.js.map",
     "static/js/2.6a3d7a41.chunk.js": "/calendar-picker/static/js/2.6a3d7a41.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.acfaf61a.js",
     "static/js/2.6a3d7a41.chunk.js",
     "static/css/main.2e924143.chunk.css",
-    "static/js/main.56191d24.chunk.js"
+    "static/js/main.b381bc1e.chunk.js"
   ]
 }
